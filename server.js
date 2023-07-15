@@ -43,6 +43,34 @@ app.get("/magic/:sentence", (req, res) => {
 	res.send(req.params.sentence + "?" + `<h1>` + randBall + `</h1>`);
 });
 
+app.get("/:number_of_bottles", (req, res) => {
+	if (req.params.number_of_bottles > 0) {
+		res.send(
+			`<h1>` +
+				req.params.number_of_bottles +
+				" Bottles of beer on the wall" +
+				`</h1>` +
+				`<a href="/` +
+				(parseInt(req.params.number_of_bottles) - 1) +
+				`">` +
+				"take one down, pass it around" +
+				`</a>`
+		);
+	} else {
+		res.send(
+			`<h1>` +
+				req.params.number_of_bottles +
+				" Bottles of beer on the wall" +
+				`</h1>` +
+				`<a href="/` +
+				99 +
+				`">` +
+				"Now we go back to..." +
+				`</a>`
+		);
+	}
+});
+
 app.listen(3000, () => {
 	console.log("listening");
 });
